@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MoodAnalyserProject1.MoodAnalyserProblem;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -22,7 +23,7 @@ namespace MoodAnalyserProblem
             {
                 if (this.message.Equals(string.Empty))
                 {
-                    throw new MoodAnalysisException(MoodAnalysisException.Exceptiontype.EMPTYMESSAGE, "Mood should not be Empty");
+                    throw new MoodAnalyserCustomException(MoodAnalyserCustomException.Exceptiontype.EMPTYMESSAGE, "Mood should not be Empty");
                 }
                 if (this.message.Contains("Sad"))
                 {
@@ -35,7 +36,7 @@ namespace MoodAnalyserProblem
             }
             catch(NullReferenceException)
             {
-                throw new MoodAnalysisException(MoodAnalysisException.Exceptiontype.NULLMESSAGE, "Mood should not be nULL");
+                throw new MoodAnalyserCustomException(MoodAnalyserCustomException.Exceptiontype.NULLMESSAGE, "Mood should not be nULL");
             }
         }
     }

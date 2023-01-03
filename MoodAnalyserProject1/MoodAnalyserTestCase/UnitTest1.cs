@@ -58,7 +58,7 @@ namespace MoodAnalyserTestCase
         }
         [TestMethod]
         //TC3.1
-        public void TestMethodShouldThrowMoodAnalysisException()
+        public void TestMethodNullMoodShouldThrowMoodAnalysisException()
         {
             try
             {
@@ -69,6 +69,21 @@ namespace MoodAnalyserTestCase
             catch (MoodAnalyserCustomException e)
             {
                 Assert.AreEqual("Mood should not be null", e.Message);
+            }
+        }
+        [TestMethod]
+        //TC3.2
+        public void TestMethodEmptyMoodShouldThrowMoodAnalysisException()
+        {
+            try
+            {
+                string message = "";
+                MoodAnalyser moodAnalyser = new MoodAnalyser(message);
+                string mood = moodAnalyser.AnalyserMood();
+            }
+            catch (MoodAnalyserCustomException e)
+            {
+                Assert.AreEqual("Mood should not be Empty", e.Message);
             }
         }
     }
