@@ -40,6 +40,7 @@ namespace MoodAnalyserTestCase
         }
         [TestMethod]
         //TC2.1
+        [DataRow("I am in Happy Mood")]
         [DataRow(null)]
         public void TestMethodAnalayzerForHappyMood()
         {
