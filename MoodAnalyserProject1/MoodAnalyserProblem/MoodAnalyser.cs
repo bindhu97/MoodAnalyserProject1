@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,11 +18,18 @@ namespace MoodAnalyserProblem
 
         public string AnalyserMood()
         {
-            if (this.message.ToLower().Contains("sad"))
+            try
             {
-                return "sad";
+                if (this.message.ToLower().Contains("sad"))
+                {
+                    return "sad";
+                }
+                else
+                {
+                    return "happy";
+                }
             }
-            else
+            catch
             {
                 return "happy";
             }
