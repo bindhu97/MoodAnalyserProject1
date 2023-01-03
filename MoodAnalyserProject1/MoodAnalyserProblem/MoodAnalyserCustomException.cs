@@ -11,6 +11,8 @@ namespace MoodAnalyserProject1.MoodAnalyserProblem
         public enum Exceptiontype
         {
             NULLMESSAGE, EMPTYMESSAGE,
+            NOSUCHFIELD, NOSUCHMETHOD,
+            NOSUCHCLASS, OBJECTCREATIONISSUE
         }
         public Exceptiontype type;
         public MoodAnalyserCustomException(Exceptiontype type, string message) : base(message)
