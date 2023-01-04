@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MoodAnalyserProblem;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -10,21 +11,20 @@ namespace MoodAnalyserProject1.MoodAnalyserProblem
 {
     public class MoodAnalyserFactory
     {
-        public static object CreateMoodAnalysis(string className, string constructorName)
+        public static object CreateMoodAnalysis(string className, string constructorName, string message)
         {
-            string pattern = @"." + constructorName + "$";
-            Match result = Regex.Match(className, pattern);
-            if (result.Success)
+            Type type = typeof(MoodAnalyser);
+            if (type.Name.Equals(className) || type.FullName.Equals(className))
             {
-                try
+                if (type.Name.Equals(constructorName))
                 {
-                    Assembly executting = Assembly.GetExecutingAssembly();
-                    Type MoodAnalyseType = executting.GetType(className);
-                    return Activator.CreateInstance(MoodAnalyseType);
+                    ConstructorInfo ctor = type.GetConstructor(new[] { typeof(string) });
+                    object instance = ctor.Invoke(new object[] { "Happy" });
+                    return instance;
                 }
-                catch (ArgumentNullException)
+                else
                 {
-                    throw new MoodAnalyserCustomException(MoodAnalyserCustomException.Exceptiontype.NOSUCHCLASS, "Class Not Found");
+                    throw new MoodAnalyserCustomException(MoodAnalyserCustomException.Exceptiontype.NOSUCHMETHOD, "Constructor is not found");
                 }
             }
             else

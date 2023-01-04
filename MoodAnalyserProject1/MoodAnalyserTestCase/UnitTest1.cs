@@ -87,22 +87,52 @@ namespace MoodAnalyserTestCase
                 Assert.AreEqual("Mood should not be Empty", e.Message);
             }
         }
-        //TC4.1
+        ////TC4.1
+        //[TestMethod]
+        //public void TestMethodClassNameShouldReturnMoodAnalyserObject()
+        //{
+        //    object expected = new MoodAnalyser();
+        //    object obj = MoodAnalyserFactory.CreateMoodAnalysis("MoodAnalyserProbelm.MoodAnalyser", "MoodAnalyser");
+        //    expected.Equals(obj);
+        //}
+        ////TC4.2
+        //[TestMethod]
+        //public void TestMethodClassNameImproperShouldThrowMoodAnalyserException()
+        //{
+        //    try
+        //    {
+        //        object expected = new MoodAnalyser();
+        //        object obj = MoodAnalyserFactory.CreateMoodAnalysis("erMoodAnalyserProbelm.MoodAnalys", "MoodAnalyser");
+        //        expected.Equals(obj);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Console.WriteLine(e.Message);
+        //    }
+        //}
+        ////TC4.3
+        //[TestMethod]
+        //public void TestMethodConstructorNameImproperShouldThrowMoodAnalyserException()
+        //{
+        //    try
+        //    {
+        //        object expected = new MoodAnalyser();
+        //        object obj = MoodAnalyserFactory.CreateMoodAnalysis("MoodAnalyserProbelm.AnalyseMood", "MoodAnalyser");
+        //        expected.Equals(obj);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Console.WriteLine(e.Message);
+        //    }
+        //}
+        //TC5.1
         [TestMethod]
-        public void TestMethodClassNameShouldReturnMoodAnalyserObject()
-        {
-            object expected = new MoodAnalyser();
-            object obj = MoodAnalyserFactory.CreateMoodAnalysis("MoodAnalyserProbelm.MoodAnalyser", "MoodAnalyser");
-            expected.Equals(obj);
-        }
-        //TC4.2
-        [TestMethod]
-        public void TestMethodClassNameImproperShouldThrowMoodAnalyserException()
+        public void Given_MoodAnalyser_Class_Name_Should_Return_MoodAnalyser_Object_Using_Parameeterized_ConstrctrutorImproper()
         {
             try
             {
-                object expected = new MoodAnalyser();
-                object obj = MoodAnalyserFactory.CreateMoodAnalysis("erMoodAnalyserProbelm.MoodAnalys", "MoodAnalyser");
+                object expected = new MoodAnalyser("Happy");
+                object obj = MoodAnalyserFactory.CreateMoodAnalysis("MoodAnalyserProbelm.MoodAnalyser", "MoodAnalyser", "Happy");
                 expected.Equals(obj);
             }
             catch (Exception e)
@@ -110,14 +140,29 @@ namespace MoodAnalyserTestCase
                 Console.WriteLine(e.Message);
             }
         }
-        //TC4.3
+        //TC5.2
         [TestMethod]
-        public void TestMethodConstructorNameImproperShouldThrowMoodAnalyserException()
+        public void Given_MoodAnalyser_Class_Name_If_Improper_Should_Throw_MoodAnalyserException()
         {
             try
             {
-                object expected = new MoodAnalyser();
-                object obj = MoodAnalyserFactory.CreateMoodAnalysis("MoodAnalyserProbelm.AnalyseMood", "MoodAnalyser");
+                object expected = new MoodAnalyser("Happy");
+                object obj = MoodAnalyserFactory.CreateMoodAnalysis("MoodAnalyserProbelm.MoodAnalyr", "MoodAnalyser", "Happy");
+                expected.Equals(obj);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+        //TC5.3
+        [TestMethod]
+        public void Given_MoodAnalyser_Method_Name_If_Improper_Should_Throw_MoodAnalyserException()
+        {
+            try
+            {
+                object expected = new MoodAnalyser("Happy");
+                object obj = MoodAnalyserFactory.CreateMoodAnalysis("MoodAnalyzerProbelm.MoodAnalyzer", "MoodAnal", "Happy");
                 expected.Equals(obj);
             }
             catch (Exception e)
