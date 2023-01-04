@@ -127,7 +127,7 @@ namespace MoodAnalyserTestCase
         //}
         //TC5.1
         [TestMethod]
-        public void Given_MoodAnalyser_Class_Name_Should_Return_MoodAnalyser_Object_Using_Parameeterized_ConstrctrutorImproper()
+        public void TestMethodMoodAnalyserObjectUsingParameeterizedConstrctrutorImproper()
         {
             try
             {
@@ -142,7 +142,7 @@ namespace MoodAnalyserTestCase
         }
         //TC5.2
         [TestMethod]
-        public void Given_MoodAnalyser_Class_Name_If_Improper_Should_Throw_MoodAnalyserException()
+        public void TestMethodClassNameIfImproperShouldThrowMoodAnalyserException()
         {
             try
             {
@@ -157,7 +157,7 @@ namespace MoodAnalyserTestCase
         }
         //TC5.3
         [TestMethod]
-        public void Given_MoodAnalyser_Method_Name_If_Improper_Should_Throw_MoodAnalyserException()
+        public void TestMethodNameIfImproperShouldThrowMoodAnalyserException()
         {
             try
             {
@@ -169,6 +169,22 @@ namespace MoodAnalyserTestCase
             {
                 Console.WriteLine(e.Message);
             }
+        }
+        //TC6.1
+        [TestMethod]
+        public void TestMethodShouldReturnHappy()
+        {
+            string expected = "Happy";
+            string mood = MoodAnalyserFactory.InvokedAnalyseMood("Happy", "MoodAnalyse");
+            Assert.AreEqual(expected, mood);
+        }
+        //TC6.2
+        [TestMethod]
+        public void TestMethodMessageWhenImproperMethodShouldThrowMoodAnalysisException()
+        {
+            string expected = "Method is not found";
+            string mood = MoodAnalyserFactory.InvokedAnalyseMood("Happy", "Analyse");
+            Assert.AreEqual(expected, mood);
         }
     }
 }

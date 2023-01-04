@@ -11,6 +11,22 @@ namespace MoodAnalyserProject1.MoodAnalyserProblem
 {
     public class MoodAnalyserFactory
     {
+        public static string InvokedAnalyseMood(string message, string methodName)
+        {
+            try
+            {
+                Type type = Type.GetType("MoodAnalyserProbelm.MoodAnalyser");
+                object moodAnalyseObject = MoodAnalyserFactory.CreateMoodAnalysis("MoodAnalyserProbelm.MoodAnalyser", "MoodAnalyser", "Happy");
+                MethodInfo analyseMoodInfo = type.GetMethod(methodName);
+                object mood = analyseMoodInfo.Invoke(moodAnalyseObject, null);
+                return mood.ToString();
+            }
+            catch (NullReferenceException)
+            {
+                MoodAnalyserCustomException exp = new MoodAnalyserCustomException(MoodAnalyserCustomException.Exceptiontype.NOSUCHMETHOD, "Method is not found");
+                return exp.Message;
+            }
+        }
         public static object CreateMoodAnalysis(string className, string constructorName, string message)
         {
             Type type = typeof(MoodAnalyser);
