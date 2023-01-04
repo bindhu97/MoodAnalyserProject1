@@ -1,5 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoodAnalyserProblem;
+using MoodAnalyserProject1;
 using MoodAnalyserProject1.MoodAnalyserProblem;
 
 namespace MoodAnalyserTestCase
@@ -84,6 +85,44 @@ namespace MoodAnalyserTestCase
             catch (MoodAnalyserCustomException e)
             {
                 Assert.AreEqual("Mood should not be Empty", e.Message);
+            }
+        }
+        //TC4.1
+        [TestMethod]
+        public void TestMethodClassNameShouldReturnMoodAnalyserObject()
+        {
+            object expected = new MoodAnalyser();
+            object obj = MoodAnalyserFactory.CreateMoodAnalysis("MoodAnalyserProbelm.MoodAnalyser", "MoodAnalyser");
+            expected.Equals(obj);
+        }
+        //TC4.2
+        [TestMethod]
+        public void TestMethodClassNameImproperShouldThrowMoodAnalyserException()
+        {
+            try
+            {
+                object expected = new MoodAnalyser();
+                object obj = MoodAnalyserFactory.CreateMoodAnalysis("erMoodAnalyserProbelm.MoodAnalys", "MoodAnalyser");
+                expected.Equals(obj);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+        //TC4.3
+        [TestMethod]
+        public void TestMethodConstructorNameImproperShouldThrowMoodAnalyserException()
+        {
+            try
+            {
+                object expected = new MoodAnalyser();
+                object obj = MoodAnalyserFactory.CreateMoodAnalysis("MoodAnalyserProbelm.AnalyseMood", "MoodAnalyser");
+                expected.Equals(obj);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
             }
         }
     }
